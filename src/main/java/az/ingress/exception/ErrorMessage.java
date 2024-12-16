@@ -7,7 +7,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum ErrorMessage {
 
-    UNEXPECTED_ERROR("Unexpected error occurred");
+    UNEXPECTED_ERROR("Unexpected error occurred"),
+    NOT_FOUND_EXCEPTION("Not Found Exception");
 
     private final String message;
 }

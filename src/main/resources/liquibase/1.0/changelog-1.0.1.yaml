@@ -1,0 +1,48 @@
+databaseChangeLog:
+  - changeSet:
+      id: create images table
+      author: Cefer Mehtiyev
+      changes:
+        - createTable:
+            tableName: images
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: product_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: image_url
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: image_sequence
+                  type: INTEGER
+              - column:
+                  name: size
+                  type: BIGINT
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: create product image foreign key
+      author: Cefer Mehtiyev
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: images
+            baseColumnNames: product_id
+            constraintName: fk_images_products
+            referencedTableName: products
+            referencedColumnNames: id
+
