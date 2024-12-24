@@ -1,2 +1,33 @@
 server:
-  port: 8080
+  port: 1004
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:2001/products_db
+    username: postgres
+    password: j@vacefer2005
+  jpa:
+    open-in-view: false
+  liquibase:
+    change-log: classpath:liquibase/changelog-master.yaml
+  rabbitmq:
+    host: localhost
+    username: guest
+    password: guest
+    listener:
+      simple:
+        retry:
+          enabled: true
+          initial-interval: 3s
+          max-attempts: 5
+          max-interval: 5s
+          multiplier: 1
+        missing-queues-fatal: false
+redis:
+  server:
+    urls: redis://localhost:6380
+
+rabbitmq:
+  publisher-service:
+    queue: RATING_Q
+    dlq: RATING_DLQ

@@ -1,0 +1,41 @@
+
+services:
+  postgres:
+    container_name: postgres_products
+    image: "postgres:latest"
+    environment:
+      POSTGRES_DB: products_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: j@vacefer2005
+    ports:
+      - "2001:5432"
+    volumes:
+      - products-db:/var/lib/postgresql/data
+
+  adminer:
+    container_name: adminer_product
+    image: adminer:latest
+    ports:
+      - '6293:8080'
+
+  rabbitmq:
+    container_name: rabbitmq_product
+    image: rabbitmq:management
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    environment:
+      RABBITMQ_DEFAULT_USER: 'guest'
+      RABBITMQ_DEFAULT_PASS: 'guest'
+  redis:
+    image: redis:latest
+    container_name: redis-container-product
+    ports:
+      - "6382:6379"
+
+volumes:
+  products-db:
+
+networks:
+  default:
+    name: product_network
